@@ -283,23 +283,20 @@
   <div class="slide">
     <div class="slide-inner">
       <h2>Music understanding is <em>hard</em> for ALMs</h2>
-      <div class="cols cols-2" style="margin-top:24px">
-        <div class="card accent-amber">
-          <h3>What is played</h3>
-          <p>Score: melody, harmony, phrasing, dynamics, form, voicing, articulation — the <strong>composer's intent</strong>.</p>
+      <div style="display:flex; justify-content:center; gap:80px; margin-top:48px; margin-bottom:40px">
+        <div style="text-align:center">
+          <div style="font-size:clamp(28px,3.5vw,44px); font-weight:600; color:var(--t-amber)">What</div>
+          <div style="font-size:clamp(13px,1.3vw,15px); color:var(--sub); margin-top:8px">melody, harmony, dynamics, form</div>
+          <div style="font-size:clamp(12px,1.1vw,13px); color:var(--sub); margin-top:4px; font-style:italic">the composer's intent</div>
         </div>
-        <div class="card accent-blue">
-          <h3>How it is played</h3>
-          <p>Performance: precise onset/offset times, velocities, rubato, expressive shaping — the <strong>performer's interpretation</strong>.</p>
+        <div style="width:1px; background:#e2e8f0; align-self:stretch"></div>
+        <div style="text-align:center">
+          <div style="font-size:clamp(28px,3.5vw,44px); font-weight:600; color:var(--t-blue)">How</div>
+          <div style="font-size:clamp(13px,1.3vw,15px); color:var(--sub); margin-top:8px">timing, velocity, rubato, expression</div>
+          <div style="font-size:clamp(12px,1.1vw,13px); color:var(--sub); margin-top:4px; font-style:italic">the performer's interpretation</div>
         </div>
       </div>
-      <div class="card" style="margin-top:20px">
-        <p>Existing ALM training pipelines rely on <strong>LLM-synthesized captions</strong> and metadata that are coarse and weakly time-grounded — limiting fine-grained musical reasoning.</p>
-      </div>
-      <div class="arrow-row">
-        <span class="arrow">→</span>
-        <p>No existing representation <strong>unifies both</strong> score semantics and performance timing in an LLM-readable format.</p>
-      </div>
+      <p style="text-align:center; font-size:clamp(14px,1.5vw,18px); color:var(--text); max-width:620px; margin:0 auto; line-height:1.7">No existing representation <strong>unifies both</strong> in an LLM-readable format.</p>
     </div>
   </div>
 
@@ -376,14 +373,17 @@ Key F major  3/4
 
   <!-- ── 4. MuNo-LM ── -->
   <div class="slide">
-    <div class="slide-inner">
-      <h2>MuNo-LM: Music Notation for Language Models</h2>
-      <div class="cols cols-3" style="margin-top:24px">
-        <div class="card accent-green"><h3>Efficient</h3></div>
-        <div class="card accent-orange"><h3>Interpretable</h3></div>
-        <div class="card accent-amber"><h3>Expressive</h3></div>
+    <div class="slide-inner" style="text-align:center">
+      <h2>MuNo-LM</h2>
+      <p style="font-size:clamp(13px,1.4vw,16px); color:var(--sub); margin-bottom:48px">Music Notation for Language Models</p>
+      <div style="display:flex; justify-content:center; gap:48px; margin-bottom:44px">
+        <span style="font-size:clamp(20px,2.4vw,30px); font-weight:600; color:var(--t-green)">Efficient</span>
+        <span style="font-size:clamp(20px,2.4vw,30px); color:#e2e8f0">/</span>
+        <span style="font-size:clamp(20px,2.4vw,30px); font-weight:600; color:var(--t-orange)">Interpretable</span>
+        <span style="font-size:clamp(20px,2.4vw,30px); color:#e2e8f0">/</span>
+        <span style="font-size:clamp(20px,2.4vw,30px); font-weight:600; color:var(--t-amber)">Expressive</span>
       </div>
-      <p style="margin-top:20px">Four verbosity variants tested: <strong>Verbose · Compact · Minimal · Beats</strong></p>
+      <p style="font-size:clamp(12px,1.2vw,14px); color:var(--sub)">Verbose · Compact · Minimal · Beats</p>
     </div>
   </div>
 
