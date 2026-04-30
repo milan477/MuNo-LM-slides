@@ -304,7 +304,7 @@
   <div class="slide">
     <div class="slide-inner">
       <h2>Each existing format has a critical gap</h2>
-      <div style="display:grid; grid-template-columns:1fr 1fr; gap:10px; margin-top:14px; height:352px">
+      <div style="display:grid; grid-template-columns:1fr 1fr 1fr; gap:10px; margin-top:14px; height:168px">
         <div class="fmt-panel">
           <div class="fmt-header">Score / PDF <span class="fmt-tag">VISUAL</span></div>
           <div class="fmt-img"><img src="./score-mozart-k332.png" alt="Mozart K.332 score"></div>
@@ -329,6 +329,8 @@ F2 E2 D2 | C6 |</div>
 00 90 41 31 81 60 80 41</div>
           <div class="fmt-footer">Machine code — no structure or harmony</div>
         </div>
+      </div>
+      <div style="display:grid; grid-template-columns:1fr 1fr 1fr; gap:10px; margin-top:10px; height:168px">
         <div class="fmt-panel">
           <div class="fmt-header">MusicXML <span class="fmt-tag">STANDARD</span></div>
           <div class="fmt-body">&lt;measure number="1"&gt;
@@ -341,6 +343,29 @@ F2 E2 D2 | C6 |</div>
     &lt;/time&gt;
   &lt;/attributes&gt;</div>
           <div class="fmt-footer">200+ tokens per bar — exceeds context windows</div>
+        </div>
+        <div class="fmt-panel ours">
+          <div class="fmt-header">MuNo-LM <span class="fmt-tag">OURS</span></div>
+          <div class="fmt-body"><span class="fkw">INSTRUMENT</span> PART 1 is piano
+
+<span class="fkw">BAR 1</span>  <span class="fts">00:01.04</span>
+Key F major  3/4
+<span class="fkw">DYNAMICS</span>  p
+  VOICE 1
+    <span class="fkw">NOTE</span> F4 half <span class="fts">01.04</span> <span class="fst">slur↑</span>
+    <span class="fkw">NOTE</span> A4 qtr  <span class="fts">01.78</span> <span class="fst">slur↓</span></div>
+          <div class="fmt-footer">Score + timing + dynamics — LM-readable</div>
+        </div>
+        <div style="background:var(--c-slate); border-radius:6px; padding:8px 10px; display:flex; flex-direction:column; justify-content:center;">
+          <table class="cmp-table">
+            <thead><tr><th></th><th>Img</th><th>ABC</th><th>MIDI</th><th>XML</th><th class="ours-col">Ours</th></tr></thead>
+            <tbody>
+              <tr><td>LLM-readable</td><td><span class="cn">✗</span></td><td><span class="cp">~</span></td><td><span class="cp">~</span></td><td><span class="cp">~</span></td><td class="ours-col"><span class="cy">✓</span></td></tr>
+              <tr><td>Compact</td><td><span class="cn">✗</span></td><td><span class="cy">✓</span></td><td><span class="cy">✓</span></td><td><span class="cn">✗</span></td><td class="ours-col"><span class="cy">✓</span></td></tr>
+              <tr><td>Musically grounded</td><td><span class="cy">✓</span></td><td><span class="cy">✓</span></td><td><span class="cn">✗</span></td><td><span class="cy">✓</span></td><td class="ours-col"><span class="cy">✓</span></td></tr>
+              <tr><td>Performance-aware</td><td><span class="cn">✗</span></td><td><span class="cn">✗</span></td><td><span class="cy">✓</span></td><td><span class="cy">✓</span></td><td class="ours-col"><span class="cy">✓</span></td></tr>
+            </tbody>
+          </table>
         </div>
       </div>
     </div>
@@ -430,10 +455,10 @@ TIME SIGNATURE 3/4
           <tr><th>Format</th><th>Claude Opus 4.7</th><th>GPT-5.5</th><th>Gemini 3.1 Pro</th><th>Qwen 3.6 Plus</th><th>Avg EM</th></tr>
         </thead>
         <tbody>
-          <tr class="row-highlight"><td>MuNo-LM Minimal</td><td>52%</td><td>80%</td><td>86%</td><td>64%</td><td>66.4%</td></tr>
-          <tr class="row-highlight"><td><strong>MuNo-LM Compact</strong></td><td>44%</td><td>86%</td><td class="best">94%</td><td>58%</td><td class="best">66.8%</td></tr>
-          <tr class="row-highlight"><td>MuNo-LM Verbose</td><td>52%</td><td class="best">88%</td><td>88%</td><td>50%</td><td>66.6%</td></tr>
-          <tr class="row-highlight"><td>MuNo-LM Beats</td><td>46%</td><td>84%</td><td>88%</td><td>58%</td><td>65.2%</td></tr>
+          <tr class="row-highlight"><td>MuNo Minimal</td><td>52%</td><td>80%</td><td>86%</td><td>64%</td><td>66.4%</td></tr>
+          <tr class="row-highlight"><td><strong>MuNo Compact</strong></td><td>44%</td><td>86%</td><td class="best">94%</td><td>58%</td><td class="best">66.8%</td></tr>
+          <tr class="row-highlight"><td>MuNo Verbose</td><td>52%</td><td class="best">88%</td><td>88%</td><td>50%</td><td>66.6%</td></tr>
+          <tr class="row-highlight"><td>MuNo Beats</td><td>46%</td><td>84%</td><td>88%</td><td>58%</td><td>65.2%</td></tr>
           <tr><td colspan="6" style="height:4px; padding:0"></td></tr>
           <tr><td>ABC</td><td>16%</td><td>80%</td><td>64%</td><td>25%</td><td>43.6%</td></tr>
           <tr><td>XML Stripped</td><td>26%</td><td>82%</td><td>88%</td><td>40%</td><td>56.8%</td></tr>
@@ -506,6 +531,100 @@ TIME SIGNATURE 3/4
     </div>
   </div>
 
+  <!-- ── 11. (n)ASAP Dataset — NEW ── -->
+  <div class="slide">
+    <div class="slide-inner">
+      <h2>The (n)ASAP Dataset — <em>1,067 recordings</em> × 236 scores</h2>
+      <div class="cols cols-2" style="margin-top:20px; gap:20px">
+        <div>
+          <div class="cols cols-3" style="gap:10px; margin-bottom:14px">
+            <div class="card accent-blue" style="padding:14px 16px; text-align:center">
+              <div style="font-size:26px; font-weight:700; color:var(--t-blue)">1,067</div>
+              <div style="font-size:10px; color:var(--t-blue); margin-top:4px; text-transform:uppercase; letter-spacing:.5px">recordings</div>
+            </div>
+            <div class="card accent-green" style="padding:14px 16px; text-align:center">
+              <div style="font-size:26px; font-weight:700; color:var(--t-green)">236</div>
+              <div style="font-size:10px; color:var(--t-green); margin-top:4px; text-transform:uppercase; letter-spacing:.5px">scores</div>
+            </div>
+            <div class="card accent-amber" style="padding:14px 16px; text-align:center">
+              <div style="font-size:26px; font-weight:700; color:var(--t-amber)">250+</div>
+              <div style="font-size:10px; color:var(--t-amber); margin-top:4px; text-transform:uppercase; letter-spacing:.5px">pianists</div>
+            </div>
+          </div>
+          <div class="card">
+            <h3>What makes it special</h3>
+            <ul style="margin-top:8px">
+              <li><strong>Note-level alignment</strong> — every MIDI note matched to a score note via DTW</li>
+              <li><strong>Score source</strong> — MusicXML from MuseScore/IMSLP, including dynamics, slurs, articulation</li>
+              <li><strong>Multiple interpretations</strong> — same score performed by many pianists at different tempos</li>
+            </ul>
+          </div>
+        </div>
+        <div>
+          <p style="font-size:11px; color:var(--sub); margin-bottom:8px; text-transform:uppercase; letter-spacing:.5px; font-weight:600">Composers covered</p>
+          <div class="composer-grid">
+            <div class="composer-row"><span class="composer-name">Bach</span><span class="composer-count">Well-Temp. Clavier</span></div>
+            <div class="composer-row"><span class="composer-name">Beethoven</span><span class="composer-count">32 sonatas</span></div>
+            <div class="composer-row"><span class="composer-name">Chopin</span><span class="composer-count">etudes, nocturnes</span></div>
+            <div class="composer-row"><span class="composer-name">Debussy</span><span class="composer-count">préludes, images</span></div>
+            <div class="composer-row"><span class="composer-name">Haydn</span><span class="composer-count">sonatas</span></div>
+            <div class="composer-row"><span class="composer-name">Mozart</span><span class="composer-count">sonatas</span></div>
+            <div class="composer-row"><span class="composer-name">Mussorgsky</span><span class="composer-count">Pictures</span></div>
+            <div class="composer-row"><span class="composer-name">Schubert</span><span class="composer-count">impromptus</span></div>
+            <div class="composer-row"><span class="composer-name">Schumann</span><span class="composer-count">kinderszenen</span></div>
+          </div>
+          <div class="card" style="margin-top:10px; padding:10px 14px">
+            <p style="font-size:11px">Alignment computed with <strong>Dynamic Time Warping</strong> on chroma features. Note onsets/offsets transferred from MIDI to score note objects, then passed to MuNo-LM renderer.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── 12. Pipeline Technical Deep Dive — NEW ── -->
+  <div class="slide">
+    <div class="slide-inner">
+      <h2>Pipeline — from raw files to training-ready QA</h2>
+      <div class="pipeline-flow" style="margin-top:22px">
+        <div class="pipe-step blue">
+          <div class="pipe-num">①</div>
+          <h3>Parse Score</h3>
+          <p>MusicXML → note graph: pitch, duration, voice, dynamics, slurs, articulation per measure</p>
+        </div>
+        <div class="pipe-step amber">
+          <div class="pipe-num">②</div>
+          <h3>Align Performance</h3>
+          <p>MIDI → DTW on chroma features → each score note gets onset / offset timestamps + MIDI velocity</p>
+        </div>
+        <div class="pipe-step green">
+          <div class="pipe-num">③</div>
+          <h3>Render MuNo-LM</h3>
+          <p>Merge score graph + timing → hierarchical text: BAR / PART / VOICE / NOTE structure</p>
+        </div>
+        <div class="pipe-step orange">
+          <div class="pipe-num">④</div>
+          <h3>LLM Caption</h3>
+          <p>Feed MuNo-LM to GPT-5.5 / Gemini → time-grounded auditory description with timestamp anchors</p>
+        </div>
+        <div class="pipe-step" style="background:#e2e8f0">
+          <div class="pipe-num" style="color:var(--t-blue)">⑤</div>
+          <h3 style="color:var(--t-slate)">Extract QA</h3>
+          <p>Claude Sonnet reads description → short-form Q&A pairs with verifiable exact-match answers</p>
+        </div>
+      </div>
+      <div class="cols cols-2" style="margin-top:16px; gap:14px">
+        <div class="card">
+          <h3>Verbosity variants</h3>
+          <p style="font-size:12px">The MuNo-LM renderer produces four variants — <strong>Verbose</strong> (all fields), <strong>Compact</strong> (omit redundant defaults), <strong>Minimal</strong> (pitch + timestamp only), <strong>Beats</strong> (bar-relative beat positions instead of wall-clock time). Each tested independently in SUBench.</p>
+        </div>
+        <div class="card accent-green">
+          <h3>Scale</h3>
+          <p style="font-size:12px">236 scores × multiple recordings each. Captioning cost: ~$0.04/piece at GPT-5.5 pricing. Full (n)ASAP caption run: under $50 total. Fully automated — no human annotation beyond SUBench QA validation.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <!-- ── 13. Rachmaninoff example ── -->
   <div class="slide">
     <div class="slide-inner">
@@ -532,6 +651,68 @@ TIME SIGNATURE 3/4
           <div class="card accent-green">
             <h3>Answer</h3>
             <p style="font-size:22px; font-weight:800; color:var(--t-green); margin-top:4px">00:08.18</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── 14. Beethoven Waldstein ── -->
+  <div class="slide">
+    <div class="slide-inner">
+      <h2>Mystery Sonata in classical style</h2>
+      <div style="margin-top:10px; margin-bottom:6px">
+        <audio id="wald-audio" src="./YeZ02M.wav" preload="none"></audio>
+        <div style="display:flex; align-items:center; gap:10px; flex-wrap:wrap">
+          <button onclick="waldPlay(518.71)" class="nav-btn" style="padding:4px 12px; font-size:11.5px">▶ <span style="color:var(--t-amber)">08:38.71</span> fermata</button>
+          <button onclick="waldPlay(523.12)" class="nav-btn" style="padding:4px 12px; font-size:11.5px">▶ <span style="color:var(--t-amber)">08:43.12</span> C-major returns</button>
+          <button onclick="waldPlay(526.04)" class="nav-btn" style="padding:4px 12px; font-size:11.5px">▶ <span style="color:var(--t-amber)">08:46.04</span> bright phrase</button>
+          <button onclick="waldPlay(529.08)" class="nav-btn" style="padding:4px 12px; font-size:11.5px">▶ <span style="color:var(--t-amber)">08:49.08</span> descent</button>
+          <button onclick="waldPlay(532.27)" class="nav-btn" style="padding:4px 12px; font-size:11.5px">▶ <span style="color:var(--t-amber)">08:52.27</span> cadence</button>
+          <button onclick="waldStop()" class="nav-btn" style="padding:4px 12px; font-size:11.5px">■ Stop</button>
+          <span id="wald-time" style="font-size:11px; color:var(--sub); font-family:monospace">00:00.00</span>
+        </div>
+      </div>
+      <div style="display:grid; gap:18px; margin-top:8px; align-items:start">
+        <div class="card" style="font-size:11.5px; line-height:1.75; color:var(--sub); max-height:calc(100vh - 320px); overflow-y:auto; padding:14px 16px">
+          <p>The tempo relaxes further at <span style="color:var(--t-amber)">08:38.71</span>, where <strong>A3</strong> moves to <strong>B3</strong> above the long-held <strong>D3–F3</strong> and <strong>G1</strong>. The final <strong>B3</strong> is held with a fermata until <span style="color:var(--t-amber)">08:43.13</span>, creating a poised dominant tension.</p>
+          <p style="margin-top:9px">At <span style="color:var(--t-amber)">08:43.12</span>, the music snaps back to tempo and returns to the opening C-major repeated texture: <strong>C4–E4</strong> and <strong>E3–C4</strong> above <strong>C3–G3</strong> and <strong>C2–C3</strong>. The first strike at <span style="color:var(--t-amber)">08:43.22</span> is more present than the following repeated chords, then the pattern settles softly. From <span style="color:var(--t-amber)">08:44.59</span> to <span style="color:var(--t-amber)">08:45.86</span>, the same opening swell occurs, moving from <strong>C4–E4</strong> to <strong>D4–F♯4</strong>.</p>
+          <p style="margin-top:9px">At <span style="color:var(--t-amber)">08:46.04</span>, the final version of the opening phrase arrives in a brighter register: <strong>G4–B4–A4–G4</strong>, immediately answered at <span style="color:var(--t-amber)">08:46.78</span> by <strong>C5–E5–D5–C5</strong>. The left hand underpins this with increasingly strong chords <strong>B2–D3–G3</strong>, then <strong>B♭2–C3–G3</strong>, adding a darker dominant color. At <span style="color:var(--t-amber)">08:47.55</span>, <strong>F5–A5–G5–F5</strong> follows, then at <span style="color:var(--t-amber)">08:48.31</span> high repeated <strong>F6–E6</strong> figures begin over <strong>A♭1–A♭2</strong> bass. This is the last acceleration into the final cadence.</p>
+          <p style="margin-top:9px">At <span style="color:var(--t-amber)">08:49.08</span>, the final fortissimo descent begins on <strong>F6</strong>, falling through <strong>E6–D6–C6–B5–A5–G5–F5–E5–D5–C5–B4–A4–G4–F4–E4</strong> while the bass ascends from <strong>G1–G2</strong> through <strong>A1–B1–C2–D2–E2–F2–G2–A2–B2–C3–D3–E3–F3–G3–A3</strong>. The contrary motion gives the ending its final surge of energy.</p>
+          <p style="margin-top:9px">At <span style="color:var(--t-amber)">08:50.54</span>, the right hand lands on clipped <strong>D4</strong>, with the left hand striking <strong>F2–F3</strong>. At <span style="color:var(--t-amber)">08:51.00</span>, both hands attack a strong <strong>G</strong> sonority: right hand <strong>G4–B4–D5–G5</strong>, left hand <strong>G2–B2–D3–G3</strong>. After a brief rest, the final cadence unfolds in three massive staccato blocks: <strong>C3–E3–G3–C4</strong> with <strong>E4–G4–C5–E5</strong> at <span style="color:var(--t-amber)">08:52.27</span>, then <strong>G2–B2–D3–G3</strong> with <strong>G4–B4–D5–G5</strong> at <span style="color:var(--t-amber)">08:53.25</span>, and finally the closing <strong>C2–E2–G2–C3</strong> with <strong>C5–E5–G5–C6</strong> at <span style="color:var(--t-amber)">08:54.34</span>. The last chord is broad, emphatic, and held longer than the preceding staccato blocks, giving the performance a decisive C-major conclusion.</p>
+        </div>
+        <!-- <div>
+          <div class="card accent-blue">
+            <h3>Generated question</h3>
+            <p style="margin-top:8px; font-style:italic; color:var(--text); line-height:1.7">"The final cadence concludes with three massive staccato blocks before the closing chord. At what timestamp does the <strong>first</strong> of these three staccato blocks land?"</p>
+          </div>
+        </div> -->
+      </div>
+    </div>
+  </div>
+
+  <!-- ── 15. Beethoven answer ── -->
+  <div class="slide">
+    <div class="slide-inner">
+      <h2>Beethoven, Waldstein: Cadence answer</h2>
+      <div style="display:grid; grid-template-columns:1fr 1fr; gap:20px; margin-top:28px; align-items:start">
+        <div>
+          <div class="card accent-blue" style="margin-bottom:16px">
+            <h3>Question (repeated)</h3>
+            <p style="margin-top:8px; font-style:italic; color:var(--text); line-height:1.7">"The final cadence concludes with three massive staccato blocks before the closing chord. At what timestamp does the <strong>first</strong> of these three staccato blocks land?"</p>
+          </div>
+          <div class="card">
+            <h3>What happens</h3>
+            <p style="margin-top:6px; font-size:12px">Both hands strike the first staccato block: <strong>C3–E3–G3–C4</strong> in the left hand and <strong>E4–G4–C5–E5</strong> in the right — a full C-major chord spread across four octaves, landing hard and releasing immediately.</p>
+          </div>
+        </div>
+        <div style="text-align:center">
+          <div class="card accent-green" style="padding:30px 24px">
+            <h3 style="text-align:center; margin-bottom:16px">Answer</h3>
+            <div style="font-size:52px; font-weight:700; color:var(--t-green); letter-spacing:-1px; line-height:1">??:??</div>
+            <div style="margin-top:16px">
+              <button onclick="waldPlay(520.27)" class="nav-btn" style="padding:6px 18px; font-size:12px; border:1px solid var(--t-green); border-radius:4px; color:var(--t-green)">▶ Hear it</button>
+            </div>
           </div>
         </div>
       </div>
@@ -645,11 +826,21 @@ TIME SIGNATURE 3/4
   // Rachmaninoff
   const rachAudio  = document.getElementById('rach-audio');
   const rachTimeEl = document.getElementById('rach-time');
-  function rachPlay(s) { rachAudio.currentTime = s; rachAudio.play(); }
+  function rachPlay(s) { rachAudio.currentTime = s; rachAudio.play(); waldAudio.pause(); }
   function rachStop()  { rachAudio.pause(); rachAudio.currentTime = 0; }
   rachAudio.addEventListener('timeupdate', () => {
     const t = rachAudio.currentTime, m = Math.floor(t/60), s = (t%60).toFixed(2).padStart(5,'0');
     rachTimeEl.textContent = `${String(m).padStart(2,'0')}:${s}`;
+  });
+
+  // Beethoven Waldstein
+  const waldAudio  = document.getElementById('wald-audio');
+  const waldTimeEl = document.getElementById('wald-time');
+  function waldPlay(s) { waldAudio.currentTime = s; waldAudio.play(); rachAudio.pause(); }
+  function waldStop()  { waldAudio.pause(); waldAudio.currentTime = 0; }
+  waldAudio.addEventListener('timeupdate', () => {
+    const t = waldAudio.currentTime, m = Math.floor(t/60), s = (t%60).toFixed(2).padStart(5,'0');
+    waldTimeEl.textContent = `${String(m).padStart(2,'0')}:${s}`;
   });
 </script>
 </body>
